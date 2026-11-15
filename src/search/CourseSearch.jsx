@@ -11,6 +11,25 @@ import { useCourseSearch } from "./useCourseSearch.js";
 import { SearchResults } from "./SearchResults.jsx";
 
 export function CourseSearch() {
+  const [query, setQuery] = useState("");
   // Replace this line with the search box (pre-lab section 06).
-  return <p className="todo">The course search goes here — pre-lab section 06.</p>;
+
+  const { results, status } = useCourseSearch(query);
+
+  return (
+    <section>
+      <h1>Search the catalogue</h1>
+
+      <label htmlFor="course-search">Search courses</label>
+
+      <input
+        id="course-search"
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <SearchResults results={results} status={status} />
+    </section>
+  );
 }
